@@ -602,7 +602,8 @@ form .check-block label {
     display: block;
     max-width: 992px;
     margin: 0 auto;
-    background: #fafafa;
+    background: linear-gradient(145deg, #0c0620 0%, #090e28 60%, #0b1520 100%);
+    border: 1px solid rgba(139, 92, 246, 0.25);
     padding: 50px 30px 30px;
     border-radius: 20px 20px 0 0;
     text-align: center
@@ -638,7 +639,7 @@ form .check-block label {
 
 .mobile-header .inner .info .name {
     position: relative;
-    color: #495369;
+    color: #e6edf3;
     font-size: 22px;
     font-weight: 700;
     text-transform: capitalize;
@@ -651,7 +652,7 @@ form .check-block label {
 
 .mobile-header .inner .info .designation {
     position: relative;
-    color: #495369;
+    color: #8b949e;
     font-size: 14px;
     font-weight: 400;
     text-transform: capitalize;
@@ -755,15 +756,28 @@ form .check-block label {
     position: absolute;
     right: 25px;
     top: 30px;
+    width: 30px;
+    height: 20px;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    z-index: 10
+    z-index: 10;
+    display: flex;
+    align-items: center
 }
 
 .mobile-header .nav-toggler img {
-    position: relative;
-    max-height: 24px
+    display: none
+}
+
+.mobile-header .nav-toggler::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #6366f1;
+    border-radius: 2px;
+    box-shadow: 0 7px 0 #6366f1, 0 14px 0 #6366f1
 }
 
 .site-container .left-bar {
@@ -1169,8 +1183,8 @@ form .check-block label {
     position: relative;
     float: left;
     width: 100%;
-    padding: 0 0 80px;
-    min-height: 790px;
+    padding: 0 0 20px;
+    min-height: 0;
     background:
         radial-gradient(ellipse at 12% 18%,  rgba(139, 92, 246, 0.32) 0%, transparent 40%),
         radial-gradient(ellipse at 88% 6%,   rgba(20, 184, 166, 0.22) 0%, transparent 38%),
@@ -1302,7 +1316,7 @@ form .check-block label {
 
 .skills-column {
     position: relative;
-    margin-bottom: 32px
+    margin-bottom: 8px
 }
 
 .skills-column h4 {
@@ -1566,7 +1580,7 @@ form .check-block label {
 
 .testimonials {
     position: relative;
-    padding: 50px 20px;
+    padding: 20px 20px;
     margin-bottom: 10px;
     background: linear-gradient(145deg, #f9fafb 0%, #ffffff 100%);
     border-radius: 16px;
@@ -4071,7 +4085,7 @@ form .check-block label {
    PERSISTENT FOOTER — inside right panel, always visible
    ============================================================ */
 .rc-footer {
-    margin-top: 40px;
+    margin-top: 16px;
     padding: 24px 50px 12px;
     display: flex;
     flex-direction: column;

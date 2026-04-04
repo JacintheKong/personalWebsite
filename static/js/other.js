@@ -19,9 +19,12 @@ function setupModal() {
     });
 
     // 关闭按钮
-    document.querySelector('.close').addEventListener('click', function() {
-        document.querySelector('.modal_container').style.display = 'none'; // 隐藏模态窗口
-    });
+    var closeBtn = document.querySelector('.close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            document.querySelector('.modal_container').style.display = 'none'; // 隐藏模态窗口
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', setupModal); // 页面加载完成后设置

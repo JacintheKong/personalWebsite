@@ -2,7 +2,7 @@
 
 /* Feature section icons (Full-Stack Development, Mobile App, Database) */
 .feature-block .icon-box img {
-    filter: hue-rotate(240deg) saturate(0.8) brightness(1.1);
+    filter: invert(1) opacity(0.85);
 }
 
 /* Expertise section checkmark icons */

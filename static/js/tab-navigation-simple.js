@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         targetSection.style.width = '100%';
         targetSection.style.minWidth = '100%';
         targetSection.style.height = 'auto';
-        targetSection.style.minHeight = '500px';
+        targetSection.style.minHeight = '0';
         targetSection.style.visibility = 'visible';
         targetSection.style.opacity = '1';
         targetSection.style.position = 'relative';
@@ -112,6 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetSection) {
                 switchTab(targetSection, link);
             }
+
+            // Close mobile nav overlay when a link is clicked
+            document.body.classList.remove('navbar-visible');
         }, true);
     });
 
