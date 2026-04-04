@@ -3,18 +3,73 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Yejun Kong - Home</title><!-- Stylesheets -->
+  <title>Yejun Kong - Home</title>
+  <!-- Anti-FOUC: set dark background before any external CSS loads -->
+  <style>html,body{background:#000000!important;margin:0;padding:0}#portal-overlay{position:fixed;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;background:#040610;z-index:99999}.portal-scene{display:flex;flex-direction:column;align-items:center;gap:48px}.portal-svg-wrap{position:relative;width:560px;height:560px;display:flex;align-items:center;justify-content:center}#portal-svg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:visible}.portal-orb{position:absolute;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center}</style>
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="static/css/bootstrap.css" rel="stylesheet">
   <link href="static/css/style.css" rel="stylesheet">
+  <link href="static/css/icon-fix.css" rel="stylesheet">
+  <link href="static/css/animations.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="shortcut icon" href="static/picture/favicon.png" type="image/x-icon"><!-- Responsive -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link href="static/css/responsive.css" rel="stylesheet">
+  <!-- Tab styles MUST load last to override everything -->
+  <link href="static/css/tab-styles.css" rel="stylesheet">
+  <!-- Comet cursor effect -->
+  <link href="static/css/comet-cursor.css" rel="stylesheet">
+  <!-- Portal entry overlay -->
+  <link href="static/css/portal.css" rel="stylesheet">
 </head>
 
 <body class="home-body">
-  <div class="body-bg" style="background-image: url(static/picture/body-bg.png);"></div>
+
+  <!-- ===== Portal Entry Overlay ===== -->
+  <div id="portal-overlay">
+    <canvas id="portal-stars"></canvas>
+
+    <!-- Portal scene: rings + orb + hint -->
+    <div class="portal-scene">
+      <div class="portal-svg-wrap">
+        <svg id="portal-svg" viewBox="-280 -280 560 560" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="portal-orb">
+          <div class="orb-bg"></div>
+          <div class="orb-rim"></div>
+          <span class="orb-label">ENTER</span>
+        </div>
+      </div>
+      <p class="portal-hint"><span class="hint-click">Click</span> the portal to enter</p>
+    </div>
+
+    <!-- Access Granted screen -->
+    <div class="portal-access" id="portal-access">
+      <div class="radiate-wrap" id="radiate-wrap"></div>
+      <div class="ag-content">
+        <div class="ag-scanline"></div>
+        <div class="ag-main-text">ACCESS GRANTED</div>
+        <div class="ag-line"></div>
+        <div class="ag-sub-text">[ IDENTITY VERIFIED — WELCOME ]</div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== End Portal ===== -->
+
+  <div class="body-bg">
+    <div class="gradient-bg"></div>
+    <div class="animated-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+      <div class="shape shape-6"></div>
+    </div>
+  </div>
   <div class="page-wrapper"><!-- Preloader -->
     <div class="preloader">
       <div class="icon"></div>
@@ -46,7 +101,8 @@
             <div class="social-links">
               <div class="social-btn"><i class="icon">+</i></div>
               <ul class="links clearfix">
-                <li><a href="https://www.linkedin.com/in/yejunkong/"><span class="fab fa-linkedin"></span></a></li>
+                <li><a href="https://www.linkedin.com/in/yejunkong/" target="_blank" title="LinkedIn"><span class="fab fa-linkedin"></span></a></li>
+                <li><a href="https://drive.google.com/file/d/1tG07V-YrXUJa3rsSZU9DjVaq6O0RNkNl/view?usp=drive_link" target="_blank" title="Download CV"><span class="fas fa-download"></span></a></li>
               </ul>
             </div>
             <div class="nav-toggler"><img src="static/picture/menu-icon.png" alt=""></div>
@@ -62,8 +118,8 @@
                   <div class="social-links">
                     <div class="social-btn"><i class="icon">+</i></div>
                     <ul class="links clearfix">
-                      <li><a href="https://www.linkedin.com/in/yejunkong/"><span class="fab fa-linkedin"></span></a>
-                      </li>
+                      <li><a href="https://www.linkedin.com/in/yejunkong/" target="_blank" title="LinkedIn"><span class="fab fa-linkedin"></span></a></li>
+                      <li><a href="https://drive.google.com/file/d/1tG07V-YrXUJa3rsSZU9DjVaq6O0RNkNl/view?usp=drive_link" target="_blank" title="Download CV"><span class="fas fa-download"></span></a></li>
                     </ul>
                   </div>
                 </div>
@@ -75,11 +131,11 @@
               <div class="left-lower">
                 <nav class="main-nav">
                   <ul class="navigation scroll-nav">
-                    <li class="home current"><a href="#home-section">Home</a></li>
+                    <li class="home current"><a href="#home-section">Summary</a></li>
+                    <li class="skills"><a href="#skills-section">Skills</a></li>
                     <li class="resume"><a href="#resume-section">Resume</a></li>
                     <li class="work"><a href="#work-section">Work</a></li>
                     <li class="projects"><a href="#projects-section">Projects</a></li>
-                    <li class="contact"><a href="#contact-section">Contact</a></li>
                   </ul>
                 </nav>
               </div>
@@ -88,14 +144,52 @@
           <div class="right-content col-xl-9 col-lg-8 col-md-12">
             <div class="right-inner">
               <div class="content-container">
-                <div class="home-content" id="home-section"><!---Download CV-->
-                  <div class="download-cv"><a
-                      href="https://drive.google.com/file/d/1tG07V-YrXUJa3rsSZU9DjVaq6O0RNkNl/view?usp=drive_link"
-                      class="theme-btn download-btn"><i class="icon"><img src="static/picture/cv-1.png" alt=""></i><span
-                        class="txt">Downlod CV</span></a></div><!--Welcome-->
+                <div class="home-content" id="home-section">
+
+                  <!-- Section banner -->
+                  <div class="section-banner sb-violet">
+                    <div class="sb-left">
+                      <div class="sb-eyebrow">Introduction</div>
+                      <div class="sb-title">Summary</div>
+                    </div>
+                    <div class="sb-right">
+                      <span class="sb-pill">Software Engineer</span>
+                      <span class="sb-pill">Georgia Tech M.S. CS</span>
+                    </div>
+                  </div>
+
                   <div class="welcome">
-                    <h4>Summary</h4>
                     <div class="text">I am a software engineer with a strong focus on backend, full-stack, and AI-driven systems, currently pursuing an M.S. in Computer Science at Georgia Tech. I enjoy building scalable, reliable products at the intersection of engineering, data, and machine intelligence, especially where automation can meaningfully improve user experience and operational efficiency.</div>
+                  </div>
+
+                  <!-- Identity Tags -->
+                  <div class="identity-tags">
+                    <span class="tag tag-reader">📚 Curious Mind</span>
+                    <span class="tag tag-traveler">✈️ Explorer</span>
+                    <span class="tag tag-builder">🔨 Builder</span>
+                    <span class="tag tag-hiker">🌲 Hiker</span>
+                    <span class="tag tag-ai">🤖 AI Tinkerer</span>
+                    <span class="tag tag-creator">🎯 Creator</span>
+                  </div>
+
+                  <!-- about.config.js Card -->
+                  <div class="code-card">
+                    <div class="code-card-header">
+                      <span class="dot dot-red"></span>
+                      <span class="dot dot-yellow"></span>
+                      <span class="dot dot-green"></span>
+                      <span class="code-card-filename">about.config.js</span>
+                    </div>
+                    <div class="code-card-body">
+<pre><code><span class="cc-kw">const</span> <span class="cc-var">yejun</span> = {
+  <span class="cc-prop">location</span>: <span class="cc-str">"Boston, MA"</span>,
+  <span class="cc-prop">education</span>: <span class="cc-str">"Georgia Tech M.S. CS"</span>, 
+  <span class="cc-prop">stack</span>: [<span class="cc-str">"Python"</span>, <span class="cc-str">"Java"</span>, <span class="cc-str">"React"</span>, <span class="cc-str">"Node.js"</span>, <span class="cc-str">"AWS"</span>, <span class="cc-str">"GCP"</span>],
+  <span class="cc-prop">passion</span>: <span class="cc-str">"Backend &amp; AI Systems"</span>,
+  <span class="cc-prop">hobbies</span>: [<span class="cc-str">"hiking"</span>, <span class="cc-str">"building"</span>, <span class="cc-str">"exploring"</span>],
+  <span class="cc-prop">curiosity</span>: <span class="cc-num">Infinity</span>,
+}</code></pre>
+                    </div>
                   </div>
 
                   <!--Features-->
@@ -131,11 +225,10 @@
                     </div>
                   </div>
 
-                  <!--About Me-->
-                  <div class="about-me">
-                    <div class="row clearfix"><!--Skills-->
+                  <!--Skills moved to own section-->
+                  <div class="about-me" style="display:none">
+                    <div class="row clearfix">
                       <div class="skills-column col-xl-12 col-lg-12 col-md-12">
-                        <h4>Skills</h4>
                         <div class="skills">
                           <div class="skill-block">
                             <div class="skill-block-inner">
@@ -252,397 +345,524 @@
                     </div>
                   </div>
                 </div>
+                </div>
 
-                <!--Resume Section-->
-                <div class="resume-content" id="resume-section">
-                  <div class="page-title sec-title">
-                    <h1><span>Resume</span></h1>
-                  </div>
-                  <div class="expertise">
-                    <div class="main-title"><span class="icon"><img src="static/picture/expertise-1.png"
-                          alt=""></span><span class="txt">Expertise</span></div>
-                    <div class="row clearfix"><!--Block-->
-                      <div class="expertise-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <ul>
-                            <li>Full-Stack Development</li>
-                            <li>Mobile App Development</li>
-                            <li>Agile Project Management</li>
-                            <li>User Authentication & Authorization</li>
-                          </ul>
-                        </div>
-                      </div><!--Block-->
-                      <div class="expertise-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <ul>
-                            <li>Frontend Technologies</li>
-                            <li>Backend Development</li>
-                            <li>Data Analytics & Visualization</li>
-                            <li>Software Architecture & System Design</li>
-                          </ul>
-                        </div>
-                      </div><!--Block-->
-                      <div class="expertise-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <ul>
-                            <li>OOP & Data Structures</li>
-                            <li>Database Management</li>
-                            <li>Prompt Engineering for LLM</li>
-                            <li>Caching & Performance Optimization</li>
-                          </ul>
-                        </div>
-                      </div>
+                <!--Skills Section-->
+                <div class="skills-content" id="skills-section">
+                  <div class="section-banner sb-teal">
+                    <div class="sb-left">
+                      <div class="sb-eyebrow">Technical Proficiency</div>
+                      <div class="sb-title">Skills</div>
+                    </div>
+                    <div class="sb-right">
+                      <span class="sb-pill">5 categories</span>
+                      <span class="sb-pill">Languages &middot; Web &middot; Frameworks &middot; DB &middot; Tools</span>
                     </div>
                   </div>
-
-                  <!--Education-->
-                  <div class="education">
-                    <div class="main-title"><span class="icon"><img src="static/picture/education-1.png"
-                          alt=""></span><span class="txt">Education</span></div>
-                    <div class="row clearfix"><!--Block-->
-                      <div class="edu-block col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="date"><span>2023 - 2026 </span></div>
-                          <h5>Georgia Institute of Technology — M.Sc. in Computer Science</h5>
-                          <div class="text">Coursework: Database Systems Concepts and Design, Graduate Algorithms,
-                            Software Development
-                            Process, Software Architecture & Design, Computer Networks, Network Security, Data Analytics
-                            & Security</div>
-                            <a href="https://drive.google.com/file/d/1Y2SfY-6zP7vNBRs4vo_3MyTgIuHwDX02/view?usp=drive_link" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                        </div>
-                      </div><!--Block-->
-                      <div class="edu-block col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="date"><span>2016 - 2018 </span></div>
-                          <h5>Columbia University — M.Sc. in Applied Analytics</h5>
-                          <div class="text">Coursework: Modern Database Architecture, Data Visualization and Design,
-                            Building A Data-savvy
-                            Org, R Programming for Applied Analytics, Analytics and Leading Change, Applied Analytics in
-                            Org Context,
-                            Applied Analytics Frameworks & Methods</div>
-                            <a href="https://drive.google.com/file/d/1okj7KUDtcCKrznGpNGkppjWlJykDx-sc/view?usp=drive_link" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--Certificate-->
-                  <div class="education">
-                    <div class="main-title"><span class="icon"><img src="static/picture/award-1.png"
-                          alt=""></span><span class="txt">Certification</span></div>
-                    <div class="row clearfix"><!--Block-->
-                      <div class="edu-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="date"><span>Issued Jan. 2026 </span></div>
-                          <h5>Google Professional Cloud Architect</h5>
-                          <div class="text" style="text-align: center; margin-top: 25px;">
-                            <a href="https://www.credly.com/badges/bf272dff-21b6-4bdb-a704-b5364647a0d8/linked_in_profile" target="_blank">
-                              <img src="static/image/cloud.png" alt="Cloud Engineer" style="width: 130px; height: 130px;">
-                            </a>
-                          </div>
-                        </div>
-                      </div><!--Block-->
-                      <div class="edu-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="date"><span>Issued Nov. 2025 </span></div>
-                          <h5>AWS Certified AI Practitioner<br>&nbsp;</h5>
-                          <div class="text" style="text-align: center; margin-top: 25px;">
-                            <a href="https://www.credly.com/badges/30948ef9-2299-4f77-866a-3ffae3cad157/linked_in_profile" target="_blank">
-                              <img src="static/image/aws.png" alt="Cloud Engineer" style="width: 130px; height: 130px;">
-                            </a>
-                          </div>
-                        </div>
-                      </div><!--Block-->
-                      <div class="edu-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="date"><span>Issued Feb. 2025 </span></div>
-                          <h5>Google Professional Data Engineer</h5>
-                          <div class="text" style="text-align: center; margin-top: 25px;">
-                            <a href="https://www.credly.com/badges/ac24a1f6-f1c9-446c-9000-170e539478c2/linked_in_profile" target="_blank">
-                              <img src="static/image/data.png" alt="Data Engineer" style="width: 130px; height: 130px;">
-                            </a>
-                          </div>
-                        </div>
-                      </div><!--Block-->
-                    </div>
-                  </div>
-
-                  <!--Interests-->
-                  <div class="interests">
-                    <div class="main-title"><span class="icon"><img src="static/picture/interest-1.png"
-                          alt=""></span><span class="txt">Interests</span></div>
-                    <div class="row clearfix"><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/hiking-1.png"
-                                alt=""></span><span class="icon hvr-icon"><img src="static/picture/hiking-11.png"
-                                alt=""></span></div>
-                          <h5>Hiking</h5>
-                        </div>
-                      </div><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/world-1.png"
-                                alt=""></span><span class="icon hvr-icon"><img src="static/picture/world-11.png"
-                                alt=""></span></div>
-                          <h5>Travel</h5>
-                        </div>
-                      </div><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/camera-1.png"
-                                alt=""></span><span class="icon hvr-icon"><img src="static/picture/camera-11.png"
-                                alt=""></span></div>
-                          <h5>Photography</h5>
-                        </div>
-                      </div><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/cycle-1.png"
-                                alt=""></span><span class="icon hvr-icon"><img src="static/picture/cycle-11.png"
-                                alt=""></span></div>
-                          <h5>Cycling</h5>
-                        </div>
-                      </div><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/book-1.png"
-                                alt=""></span><span class="icon hvr-icon"><img src="static/picture/book-11.png"
-                                alt=""></span></div>
-                          <h5>Reading</h5>
-                        </div>
-                      </div><!--Block-->
-                      <div class="interest-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                          <div class="icon-box"><span class="icon def-icon"><img src="static/picture/gaming-1.png"
-                            alt=""></span><span class="icon hvr-icon"><img src="static/picture/gaming-11.png"
-                            alt=""></span></div>
-                          <h5>Gaming</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--Work Section-->
-                  <div class="work-content" id="work-section">
-                    <div class="page-title sec-title">
-                      <h1><span>Work</span></h1>
-                    </div><!--Text-->
-
-                    <!--Experience-->
-                    <div class="education experience">
-                      <div class="main-title"><span class="icon"><img src="static/picture/experience-1.png"
-                            alt=""></span><span class="txt">Work Experience</span></div>
-                      <div class="row clearfix"><!--Block-->
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Nov. 2025 - Current</span></div>
-                            <h5>MetricStream — AI Engineer / Product Manager</h5>
-                            <div class="text">
-                              <ul> • Led the redesign of a legacy enterprise Risk Register into a streamlined, AI-first application, achieving a 60% reduction in user onboarding time by replacing manual data entry with LLM-powered auto-generation for risk descriptions, categories, and relevant controls based on risk titles.
-                              </ul>
-                              <ul> • Architected a schema-driven configuration engine for custom risk assessment methodologies (e.g., factor-based approach and dynamic m * n heatmaps) via a no-code interface; utilized AI-assisted validation to ensure user-defined assessment structures align with organizational standards.
-                              </ul>
-                            </div>
-                            <a href="https://www.metricstream.com/" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                          </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Jul. 2025 - Sept. 2025</span></div>
-                            <h5>Mina — Software Engineer Intern</h5>
-                            <div class="text">
-                              <ul> • Transformed a single registration page into a robust, multi-step flow using React and TypeScript, implementing real-time validation and OAuth 2.0 to boost sign-up conversion rates by 50%.
-                              </ul>
-                              <ul> • Implemented an AI-powered 'Easy Listing' feature that automates product data entry from photos, reducing average listing time by 60% while simultaneously detecting  and blocking sensitive content.
-                              </ul>
-                              <ul> • Implemented an email verification feature and optimized it with client-side debouncing and server-side rate limiting, resolving ‘too many requests’ errors and improving system stability.
-                              </ul>
-                              <ul> • Implemented a user-friendly feedback system (floating button to backend API) that captured technical context and linked reports to Sentry events, achieving 90% faster bug resolution.
-                              </ul>
-                            </div>
-                            <a href="https://www.getmina.app/" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                          </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Oct. - Dec. 2024</span></div>
-                            <h5>Abel.ai — Software Engineer Intern</h5>
-                            <div class="text">
-                              <ul> • Developed a Streamlit-based frontend for dynamic story creation, allowing users to define storyteller identities and backgrounds, which were processed via a meta-prompting framework to generate role-specific GPT-4 prompts.
-                              </ul>
-                              <ul> • Assessed and applied multi-agent orchestration principles from MetaGPT to construct a system simulating real-world financial workflows with modular task delegation.
-                              </ul>
-                              <ul> • Implemented RESTful APIs to enable communication between agents and facilitate frontend-backend integration, improving modularity and reusability across the entire system.
-                              </ul>
-                            </div>
-                            <a href="https://abel.ai/" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                          </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Jul. - Oct. 2024</span></div>
-                            <h5>TinyTalk.ai — Software Engineer Intern</h5>
-                            <div class="text">
-                              <ul> • Integrated Firebase-based third-party authentication into TinyTalk, a Flutter app released on both iOS and Android, increasing user retention by 13% through seamless and secure cross-device access.
-                              </ul>
-                              <ul> • Enhanced the accuracy and reliability of LLM-generated stories by integrating Pydantic models in Python for data validation, reducing unwanted phrases from 5% to 0%.
-                              </ul>
-                              <ul> • Improved story preview and content load time by applying effective caching strategies, cutting refresh latency by 80% (from 5 seconds to under one), significantly boosting real-time user experience.
-                              </ul>
-                              <ul> • Refined the story generation framework by testing/evaluating predefined prompt variations stored in a dictionary, selecting top performers to optimize content quality and increase user satisfaction by 17%.
-                              </ul>
-                            </div>
-                            <a href="https://stoneye.ai/" target="_blank" class="arrow_icon">
-                              <img class="svg" src="static/image/arrow.svg" alt="">
-                            </a>
-                          </div>
-                        </div><!--Block-->
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--Projects Section-->
-                  <div class="projects-content" id="projects-section">
-                    <div class="page-title sec-title">
-                      <h1><span>Projects</span></h1>
-                    </div><!--Projects Section -->
-                    
-                    <!--Experience-->
-                    <div class="education experience">
-                      <div class="main-title"><span class="icon"><img src="static/picture/experience-2.png"
-                            alt=""></span><span class="txt">Project Experience</span></div>
-                      <div class="row clearfix"><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Oct. - Dec. 2024</span></div>
-                            <h5>Enron Scandal</h5>
-                            <div class="text">
-                              <ul> • Built an AI-powered fraud detection system using Python, CrewAI, and GPT-4 to analyze 500K+ Enron emails, cutting manual review time by over 90% (from 6 hours to under 30 minutes).
-                              </ul>
-                              <ul> • Designed a multi-agent framework with specialized agents for market research, email extraction, content analysis, and fraud validation, streamlining data processing and decision-making.
-                              </ul>
-                              <ul> • Developed a GPT-4-driven Content Analyzer using structured prompt engineering, leveraging NLP capabilities to detect fraud-related patterns, tone anomalies, and inconsistencies in communication.
-                              </ul>
+                  <div class="about-me">
+                    <div class="row clearfix">
+                      <div class="skills-column col-xl-12 col-lg-12 col-md-12">
+                        <div class="skills">
+                          <div class="skill-block">
+                            <div class="skill-block-inner">
+                              <div class="skill-title">Programming Languages: Java, Python, JavaScript, R, PHP, Dart</div>
+                              <div class="bar">
+                                <div class="bar-inner count-bar" data-percent="82%">
+                                  <div class="count-box"><span class="count-text" data-stop="82" data-speed="2000">0</span>%</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Apr. - Jun. 2024</span></div>
-                            <h5>License Plate Recognition Project</h5>
-                            <div class="text">
-                              <ul> • Built a license plate recognition system using OpenCV and deep learning, enabling accurate detection and classification of alphanumeric characters from vehicle images.
-                              </ul>
-                              <ul> • Implemented license plate localization with LBP cascades and image preprocessing (grayscale, thresholding, erosion, dilation) to enhance detection accuracy.
-                              </ul>
-                              <ul> • Trained a TensorFlow/Keras CNN with data augmentation and dropout, using callbacks to halt training at 99.2% validation accuracy and TensorBoard to monitor training dynamics.
-                              </ul>
+                          <div class="skill-block">
+                            <div class="skill-block-inner">
+                              <div class="skill-title">Web Technologies: HTML/CSS, Node.js, React, TypeScript/JavaScript</div>
+                              <div class="bar">
+                                <div class="bar-inner count-bar" data-percent="90%">
+                                  <div class="count-box"><span class="count-text" data-stop="90" data-speed="2000">0</span>%</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Sep. - Dec. 2023</span></div>
-                            <h5>BuzzCars</h5>
-                            <div class="text">
-                              <ul> • Developed comprehensive system architecture by creating Information Flow Diagrams, Entity-Relationship (EER)
-                                Diagrams, and EER to Relational Mapping, establishing a robust foundation for the project
-                              </ul>
-                              <ul> • Engineered a well-structured database schema by crafting SQL Create Table statements, ensuring data integrity
-                                and efficient storage. Utilized XAMPP with Apache, MySQL, and PHP to design and implement a dynamic website
-                              </ul>
-                              <ul> • Designed and implemented secure user authentication features, enabling registered users to access advanced
-                                functionalities, including customer and vendor lookup, and the addition of new vehicles to the system
-                              </ul>
+                          <div class="skill-block">
+                            <div class="skill-block-inner">
+                              <div class="skill-title">Frameworks &amp; Tools: Django, Spring Boot, Flutter, Android SDK</div>
+                              <div class="bar">
+                                <div class="bar-inner count-bar" data-percent="75%">
+                                  <div class="count-box"><span class="count-text" data-stop="75" data-speed="2000">0</span>%</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div><!--Block-->
-
-                        <div class="edu-block col-12">
-                          <div class="inner-box">
-                            <div class="date"><span>Sep. - Dec. 2023</span></div>
-                            <h5>Grocery Express</h5>
-                            <div class="text">
-                              <ul> • Led the development phase by creating UML Class Models, Sequence Diagrams, and Behavioral Diagrams, establishing
-                                a clear and robust project structure</ul>
-                              <ul> • Designed and implemented a delivery optimization system using Spring Boot, Java, and MySQL, ensuring efficient
-                                data management and integrity throughout the process</ul>
-                              <ul> • Implemented a dynamic distribution system that issues time-sensitive coupons to high-rated customers and enforces
-                                financial penalties on stores for delivery delays</ul>
+                          <div class="skill-block">
+                            <div class="skill-block-inner">
+                              <div class="skill-title">Databases: SQL, MySQL, SQLite, MongoDB, Redis, PostgreSQL</div>
+                              <div class="bar">
+                                <div class="bar-inner count-bar" data-percent="87%">
+                                  <div class="count-box"><span class="count-text" data-stop="87" data-speed="2000">0</span>%</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--Contact Section-->
-                  <div class="contact-content" id="contact-section">
-                    <div class="page-title sec-title">
-                      <h1><span>Contact</span></h1>
-                    </div><!--Text-->
-                    <div class="upper-text">
-                      <h4>Get in touch</h4>
-                      <div class="text">I am passionate about developing innovative solutions to enhance user
-                        experiences. I am currently
-                        seeking a position in software development, particularly in the fields of artificial
-                        intelligence and machine
-                        learning.</div>
-                    </div>
-                    <div class="info-box">
-                      <div class="row clearfix"><!--Info Block-->
-                        <div class="info-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                          <div class="inner-box">
-                            <div class="icon"><span class="fa fa-envelope"></span></div>
-                            <div class="text"><a href="mailto:yk2731@columbia.edu">yk2731@columbia.edu</a></div>
-                          </div>
-                        </div><!--Info Block-->
-                        <div class="info-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                          <div class="inner-box">
-                            <div class="icon"><span class="fa fa-phone-alt"></span></div>
-                            <div class="text"><a href="tel:+7742868486">+1 774 286 8486</a></div>
-                          </div>
-                        </div><!--Info Block-->
-                        <div class="info-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                          <div class="inner-box">
-                            <div class="icon"><span class="fa fa-map-marker-alt"></span></div>
-                            <div class="text"><a href="#">6 Spooner Ave, Natick, MA</a></div>
+                          <div class="skill-block">
+                            <div class="skill-block-inner">
+                              <div class="skill-title">Project Management: Git, Agile, UML Diagrams, ER Diagrams</div>
+                              <div class="bar">
+                                <div class="bar-inner count-bar" data-percent="88%">
+                                  <div class="count-box"><span class="count-text" data-stop="88" data-speed="2000">0</span>%</div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <!--Resume Section-->
+                <div class="resume-content" id="resume-section">
+                  <div class="section-banner sb-amber">
+                    <div class="sb-left">
+                      <div class="sb-eyebrow">Background</div>
+                      <div class="sb-title">Resume</div>
+                    </div>
+                    <div class="sb-right">
+                      <span class="sb-pill">2 degrees</span>
+                      <span class="sb-pill">4 certifications</span>
+                    </div>
+                  </div>
+                  <div class="expertise">
+                    <div class="main-title"><span class="icon"><i class="fas fa-laptop-code"></i></span><span class="txt">Expertise</span></div>
+                    <div class="domain-grid">
+
+                      <div class="domain-card domain-indigo">
+                        <div class="domain-header">
+                          <div class="domain-icon-wrap"><i class="fas fa-code"></i></div>
+                          <div class="domain-label">Engineering</div>
+                        </div>
+                        <div class="domain-tags">
+                          <span>Full-Stack Development</span>
+                          <span>Mobile App Development</span>
+                          <span>Agile Project Management</span>
+                          <span>User Auth &amp; Authorization</span>
+                        </div>
+                      </div>
+
+                      <div class="domain-card domain-violet">
+                        <div class="domain-header">
+                          <div class="domain-icon-wrap"><i class="fas fa-layer-group"></i></div>
+                          <div class="domain-label">Architecture</div>
+                        </div>
+                        <div class="domain-tags">
+                          <span>Frontend Technologies</span>
+                          <span>Backend Development</span>
+                          <span>Data Analytics &amp; Visualization</span>
+                          <span>Software Architecture &amp; Design</span>
+                        </div>
+                      </div>
+
+                      <div class="domain-card domain-cyan">
+                        <div class="domain-header">
+                          <div class="domain-icon-wrap"><i class="fas fa-database"></i></div>
+                          <div class="domain-label">Systems</div>
+                        </div>
+                        <div class="domain-tags">
+                          <span>OOP &amp; Data Structures</span>
+                          <span>Database Management</span>
+                          <span>Prompt Engineering for LLM</span>
+                          <span>Performance Optimization</span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!--Education-->
+                  <div class="education">
+                    <div class="main-title"><span class="icon"><i class="fas fa-graduation-cap"></i></span><span class="txt">Education</span></div>
+                    <div class="edu-timeline">
+
+                      <div class="edu-tcard">
+                        <div class="edu-year-col">
+                          <div class="edu-year-range">2023<span>–</span>2026</div>
+                          <div class="edu-degree-pill">M.Sc.</div>
+                        </div>
+                        <div class="edu-detail-col">
+                          <div class="edu-school">Georgia Institute of Technology</div>
+                          <div class="edu-field">Computer Science</div>
+                          <div class="edu-courses">Database Systems · Graduate Algorithms · Software Dev Process · Architecture &amp; Design · Computer Networks · Network Security · Data Analytics</div>
+                          <a href="https://drive.google.com/file/d/1Y2SfY-6zP7vNBRs4vo_3MyTgIuHwDX02/view?usp=drive_link" target="_blank" class="edu-link">
+                            View Transcript <i class="fas fa-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="edu-tcard">
+                        <div class="edu-year-col">
+                          <div class="edu-year-range">2016<span>–</span>2018</div>
+                          <div class="edu-degree-pill">M.Sc.</div>
+                        </div>
+                        <div class="edu-detail-col">
+                          <div class="edu-school">Columbia University</div>
+                          <div class="edu-field">Applied Analytics</div>
+                          <div class="edu-courses">Modern Database Architecture · Data Visualization &amp; Design · R Programming · Analytics &amp; Leading Change · Applied Analytics Frameworks</div>
+                          <a href="https://drive.google.com/file/d/1okj7KUDtcCKrznGpNGkppjWlJykDx-sc/view?usp=drive_link" target="_blank" class="edu-link">
+                            View Transcript <i class="fas fa-arrow-right"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!--Certificate-->
+                  <div class="education">
+                    <div class="main-title"><span class="icon"><i class="fas fa-award"></i></span><span class="txt">Certification</span></div>
+                    <div class="cert-grid">
+
+                      <!-- AWS SAP — newest, featured -->
+                      <div class="cert-card cert-aws cert-featured">
+                        <div class="cert-corner cert-corner-tl"></div>
+                        <div class="cert-corner cert-corner-br"></div>
+                        <span class="cert-new-badge">Latest</span>
+                        <div class="cert-badge-wrap">
+                          <div class="cert-glow cert-glow-aws"></div>
+                          <img src="static/image/aws-sap.png" alt="AWS Solutions Architect Professional">
+                        </div>
+                        <div class="cert-issuer cert-issuer-aws">Amazon Web Services</div>
+                        <div class="cert-name">AWS Certified Solutions Architect – Professional</div>
+                        <div class="cert-date"><i class="fas fa-calendar-alt"></i> Issued Mar. 2026</div>
+                        <a href="https://www.credly.com/badges/4557f6fa-4199-475a-bb0c-927b4844989a/linked_in?t=tbmwd3" target="_blank" class="cert-verify cert-verify-aws">
+                          <i class="fas fa-external-link-alt"></i> Verify
+                        </a>
+                      </div>
+
+                      <!-- GCP Cloud Architect -->
+                      <div class="cert-card cert-gcp">
+                        <div class="cert-corner cert-corner-tl"></div>
+                        <div class="cert-corner cert-corner-br"></div>
+                        <div class="cert-badge-wrap">
+                          <div class="cert-glow cert-glow-gcp"></div>
+                          <img src="static/image/cloud.png" alt="Google Cloud Architect">
+                        </div>
+                        <div class="cert-issuer cert-issuer-gcp">Google Cloud</div>
+                        <div class="cert-name">Professional Cloud Architect</div>
+                        <div class="cert-date"><i class="fas fa-calendar-alt"></i> Issued Jan. 2026</div>
+                        <a href="https://www.credly.com/badges/bf272dff-21b6-4bdb-a704-b5364647a0d8/linked_in_profile" target="_blank" class="cert-verify cert-verify-gcp">
+                          <i class="fas fa-external-link-alt"></i> Verify
+                        </a>
+                      </div>
+
+                      <!-- AWS AI Practitioner -->
+                      <div class="cert-card cert-aws">
+                        <div class="cert-corner cert-corner-tl"></div>
+                        <div class="cert-corner cert-corner-br"></div>
+                        <div class="cert-badge-wrap">
+                          <div class="cert-glow cert-glow-aws"></div>
+                          <img src="static/image/aws.png" alt="AWS AI Practitioner">
+                        </div>
+                        <div class="cert-issuer cert-issuer-aws">Amazon Web Services</div>
+                        <div class="cert-name">AWS Certified AI Practitioner</div>
+                        <div class="cert-date"><i class="fas fa-calendar-alt"></i> Issued Nov. 2025</div>
+                        <a href="https://www.credly.com/badges/30948ef9-2299-4f77-866a-3ffae3cad157/linked_in_profile" target="_blank" class="cert-verify cert-verify-aws">
+                          <i class="fas fa-external-link-alt"></i> Verify
+                        </a>
+                      </div>
+
+                      <!-- GCP Data Engineer -->
+                      <div class="cert-card cert-gcp">
+                        <div class="cert-corner cert-corner-tl"></div>
+                        <div class="cert-corner cert-corner-br"></div>
+                        <div class="cert-badge-wrap">
+                          <div class="cert-glow cert-glow-gcp"></div>
+                          <img src="static/image/data.png" alt="Google Data Engineer">
+                        </div>
+                        <div class="cert-issuer cert-issuer-gcp">Google Cloud</div>
+                        <div class="cert-name">Professional Data Engineer</div>
+                        <div class="cert-date"><i class="fas fa-calendar-alt"></i> Issued Feb. 2025</div>
+                        <a href="https://www.credly.com/badges/ac24a1f6-f1c9-446c-9000-170e539478c2/linked_in_profile" target="_blank" class="cert-verify cert-verify-gcp">
+                          <i class="fas fa-external-link-alt"></i> Verify
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!--Interests-->
+                  <div class="interests">
+                    <div class="main-title"><span class="icon"><i class="fas fa-star"></i></span><span class="txt">Interests</span></div>
+                    <div class="vibe-grid">
+
+                      <div class="vibe-tile" style="--vc:#22c55e">
+                        <div class="vibe-icon-wrap"><i class="fas fa-mountain"></i></div>
+                        <div class="vibe-label">Hiking</div>
+                      </div>
+
+                      <div class="vibe-tile" style="--vc:#06b6d4">
+                        <div class="vibe-icon-wrap"><i class="fas fa-globe-americas"></i></div>
+                        <div class="vibe-label">Travel</div>
+                      </div>
+
+                      <div class="vibe-tile" style="--vc:#ec4899">
+                        <div class="vibe-icon-wrap"><i class="fas fa-camera"></i></div>
+                        <div class="vibe-label">Photography</div>
+                      </div>
+
+                      <div class="vibe-tile" style="--vc:#f97316">
+                        <div class="vibe-icon-wrap"><i class="fas fa-bicycle"></i></div>
+                        <div class="vibe-label">Cycling</div>
+                      </div>
+
+                      <div class="vibe-tile" style="--vc:#f59e0b">
+                        <div class="vibe-icon-wrap"><i class="fas fa-book"></i></div>
+                        <div class="vibe-label">Reading</div>
+                      </div>
+
+                      <div class="vibe-tile" style="--vc:#a855f7">
+                        <div class="vibe-icon-wrap"><i class="fas fa-gamepad"></i></div>
+                        <div class="vibe-label">Gaming</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!--Work Section-->
+                <div class="work-content" id="work-section">
+
+                  <!-- Section banner -->
+                  <div class="section-banner sb-coral">
+                    <div class="sb-left">
+                      <div class="sb-eyebrow">Experience</div>
+                      <div class="sb-title">Work</div>
+                    </div>
+                    <div class="sb-right">
+                      <span class="sb-pill">4 roles</span>
+                      <span class="sb-pill">AI &middot; Full-stack &middot; Mobile</span>
+                    </div>
+                  </div>
+
+                  <!-- Work timeline -->
+                  <div class="wt-timeline">
+
+                    <!-- MetricStream -->
+                    <div class="wt-entry">
+                      <div class="wt-spine">
+                        <div class="wt-node wt-node-coral"></div>
+                        <div class="wt-line"></div>
+                      </div>
+                      <div class="wt-card">
+                        <div class="wt-card-header">
+                          <div class="wt-company">MetricStream</div>
+                          <div class="wt-role">AI Engineer &amp; Product Manager</div>
+                          <span class="wt-date">Nov 2025 &mdash; Current</span>
+                          <span class="wt-status wt-active">● active</span>
+                        </div>
+                        <div class="wt-tags">
+                          <span class="wtag wtag-py">Python</span><span class="wtag wtag-ai">LLM</span><span class="wtag wtag-ai">AI</span><span class="wtag wtag-ts">Risk Platform</span>
+                        </div>
+                        <ul class="wt-bullets">
+                          <li>Led redesign of legacy enterprise Risk Register into AI-first app — <strong>60% reduction</strong> in onboarding time via LLM-powered auto-generation.</li>
+                          <li>Architected schema-driven config engine for custom risk assessment (factor-based + dynamic m&times;n heatmaps) via no-code interface with AI-assisted validation.</li>
+                        </ul>
+                        <a href="https://www.metricstream.com/" target="_blank" class="wt-link">&#8599; metricstream.com</a>
+                      </div>
+                    </div>
+
+                    <!-- Mina -->
+                    <div class="wt-entry">
+                      <div class="wt-spine">
+                        <div class="wt-node wt-node-blue"></div>
+                        <div class="wt-line"></div>
+                      </div>
+                      <div class="wt-card">
+                        <div class="wt-card-header">
+                          <div class="wt-company">Mina</div>
+                          <div class="wt-role">Software Engineer Intern</div>
+                          <span class="wt-date">Jul 2025 &mdash; Sep 2025</span>
+                        </div>
+                        <div class="wt-tags">
+                          <span class="wtag wtag-react">React</span><span class="wtag wtag-ts">TypeScript</span><span class="wtag wtag-auth">OAuth 2.0</span><span class="wtag wtag-ai">AI</span>
+                        </div>
+                        <ul class="wt-bullets">
+                          <li>Transformed single registration page into multi-step flow with real-time validation &amp; OAuth 2.0 — <strong>50% sign-up conversion boost</strong>.</li>
+                          <li>Built AI-powered &lsquo;Easy Listing&rsquo; that auto-fills product data from photos — <strong>60% faster listings</strong> + content moderation.</li>
+                          <li>Engineered feedback system linking UI reports to Sentry events — <strong>90% faster bug resolution</strong>.</li>
+                        </ul>
+                        <a href="https://www.getmina.app/" target="_blank" class="wt-link">&#8599; getmina.app</a>
+                      </div>
+                    </div>
+
+                    <!-- Abel.ai -->
+                    <div class="wt-entry">
+                      <div class="wt-spine">
+                        <div class="wt-node wt-node-green"></div>
+                        <div class="wt-line"></div>
+                      </div>
+                      <div class="wt-card">
+                        <div class="wt-card-header">
+                          <div class="wt-company">Abel.ai</div>
+                          <div class="wt-role">Software Engineer Intern</div>
+                          <span class="wt-date">Oct 2024 &mdash; Dec 2024</span>
+                        </div>
+                        <div class="wt-tags">
+                          <span class="wtag wtag-py">Streamlit</span><span class="wtag wtag-ai">GPT-4</span><span class="wtag wtag-ai">Multi-agent</span><span class="wtag wtag-rest">REST API</span>
+                        </div>
+                        <ul class="wt-bullets">
+                          <li>Built Streamlit frontend for dynamic story creation — meta-prompting framework generates role-specific GPT-4 prompts from user-defined identities.</li>
+                          <li>Applied MetaGPT multi-agent orchestration principles to simulate financial workflows with modular task delegation.</li>
+                          <li>Implemented RESTful APIs bridging agents and frontend, boosting modularity across the full stack.</li>
+                        </ul>
+                        <a href="https://abel.ai/" target="_blank" class="wt-link">&#8599; abel.ai</a>
+                      </div>
+                    </div>
+
+                    <!-- TinyTalk.ai -->
+                    <div class="wt-entry wt-entry-last">
+                      <div class="wt-spine">
+                        <div class="wt-node wt-node-purple"></div>
+                      </div>
+                      <div class="wt-card">
+                        <div class="wt-card-header">
+                          <div class="wt-company">TinyTalk.ai</div>
+                          <div class="wt-role">Software Engineer Intern</div>
+                          <span class="wt-date">Jul 2024 &mdash; Oct 2024</span>
+                        </div>
+                        <div class="wt-tags">
+                          <span class="wtag wtag-flutter">Flutter</span><span class="wtag wtag-firebase">Firebase</span><span class="wtag wtag-py">Python</span><span class="wtag wtag-ai">LLM</span>
+                        </div>
+                        <ul class="wt-bullets">
+                          <li>Integrated Firebase auth into Flutter app (iOS &amp; Android) — <strong>13% higher user retention</strong> via seamless cross-device access.</li>
+                          <li>Added Pydantic data validation — reduced unwanted LLM output from <strong>5% → 0%</strong>.</li>
+                          <li>Applied caching strategies — story load latency dropped <strong>80% (5s → &lt;1s)</strong>.</li>
+                        </ul>
+                        <a href="https://stoneye.ai/" target="_blank" class="wt-link">&#8599; stoneye.ai</a>
+                      </div>
+                    </div>
+
+                  </div><!-- end wt-timeline -->
+                </div>
+
+                <!--Projects Section-->
+                <div class="projects-content" id="projects-section">
+
+                  <!-- Section banner -->
+                  <div class="section-banner sb-blue">
+                    <div class="sb-left">
+                      <div class="sb-eyebrow">Portfolio</div>
+                      <div class="sb-title">Projects</div>
+                    </div>
+                    <div class="sb-right">
+                      <span class="sb-pill">4 shipped</span>
+                      <span class="sb-pill">AI &middot; CV &middot; Web &middot; Backend</span>
+                    </div>
+                  </div>
+
+                  <!-- Project repo grid -->
+                  <div class="proj-grid">
+
+                    <!-- Enron Fraud Detector -->
+                    <div class="proj-card">
+                      <div class="proj-card-header">
+                        <span class="proj-icon">&#9634;</span>
+                        <span class="proj-name">Enron Fraud Detector</span>
+                        <span class="proj-lang proj-lang-py">Python</span>
+                      </div>
+                      <p class="proj-desc">AI-powered fraud detection over 500K+ Enron emails — <strong>90% reduction</strong> in manual review time (6h &rarr; 30min).</p>
+                      <div class="proj-tags">
+                        <span class="ptag">CrewAI</span><span class="ptag">GPT-4</span><span class="ptag">NLP</span><span class="ptag">Multi-agent</span>
+                      </div>
+                      <div class="proj-footer">
+                        <span class="proj-date">Oct – Dec 2024</span>
+                        <span class="proj-status proj-done">&#11044; complete</span>
+                      </div>
+                    </div>
+
+                    <!-- License Plate Recognition -->
+                    <div class="proj-card">
+                      <div class="proj-card-header">
+                        <span class="proj-icon">&#9634;</span>
+                        <span class="proj-name">License Plate Recognizer</span>
+                        <span class="proj-lang proj-lang-py">Python</span>
+                      </div>
+                      <p class="proj-desc">License plate detection &amp; character classification using OpenCV + deep learning — halted at <strong>99.2% validation accuracy</strong>.</p>
+                      <div class="proj-tags">
+                        <span class="ptag">OpenCV</span><span class="ptag">TensorFlow</span><span class="ptag">Keras</span><span class="ptag">CNN</span>
+                      </div>
+                      <div class="proj-footer">
+                        <span class="proj-date">Apr – Jun 2024</span>
+                        <span class="proj-status proj-done">&#11044; complete</span>
+                      </div>
+                    </div>
+
+                    <!-- BuzzCars -->
+                    <div class="proj-card">
+                      <div class="proj-card-header">
+                        <span class="proj-icon">&#9634;</span>
+                        <span class="proj-name">BuzzCars</span>
+                        <span class="proj-lang proj-lang-php">PHP</span>
+                      </div>
+                      <p class="proj-desc">Full-stack car marketplace with EER-mapped relational database, secure auth, and vendor/customer lookup — built with XAMPP + MySQL.</p>
+                      <div class="proj-tags">
+                        <span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">SQL</span><span class="ptag">Apache</span>
+                      </div>
+                      <div class="proj-footer">
+                        <span class="proj-date">Sep – Dec 2023</span>
+                        <span class="proj-status proj-done">&#11044; complete</span>
+                      </div>
+                    </div>
+
+                    <!-- Grocery Express -->
+                    <div class="proj-card">
+                      <div class="proj-card-header">
+                        <span class="proj-icon">&#9634;</span>
+                        <span class="proj-name">Grocery Express</span>
+                        <span class="proj-lang proj-lang-java">Java</span>
+                      </div>
+                      <p class="proj-desc">Delivery optimization system with dynamic coupon distribution and SLA enforcement — designed with UML, built on Spring Boot + MySQL.</p>
+                      <div class="proj-tags">
+                        <span class="ptag">Spring Boot</span><span class="ptag">Java</span><span class="ptag">MySQL</span><span class="ptag">UML</span>
+                      </div>
+                      <div class="proj-footer">
+                        <span class="proj-date">Sep – Dec 2023</span>
+                        <span class="proj-status proj-done">&#11044; complete</span>
+                      </div>
+                    </div>
+
+                  </div><!-- end proj-grid -->
+                </div>
+
+
+                <!-- Persistent footer — always visible across all tabs -->
+                <div class="rc-footer">
+                  <div class="rc-footer-line"></div>
+                  <div class="rc-footer-contacts">
+                    <a class="rc-footer-link" href="mailto:yk2731@columbia.edu">
+                      <i class="fas fa-envelope"></i>&nbsp;yk2731@columbia.edu
+                    </a>
+                    <span class="rc-footer-sep">&middot;</span>
+                    <a class="rc-footer-link" href="tel:+17742868486">
+                      <i class="fas fa-phone"></i>&nbsp;+1 774 286 8486
+                    </a>
+                  </div>
+                  <div class="rc-footer-copy">&copy;2026 by Yejun Kong. All Rights Reserved.</div>
+                </div>
+
               </div>
             </div>
-          </div>
-          <!--Copyright-->
-          <div class="site-footer">
-            <div class="copyright">&copy;2026 by Yejun Kong. All Rights Reserved.</div>
           </div>
         </div>
       </div><!--End Site Container -->
     </div><!--End pagewrapper--><!--Scroll to top-->
-    <div class="scroll-to-top scroll-to-target" data-target="html" style="display: block !important; position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background: #fd7030; border-radius: 50%; z-index: 99999; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-      <span class="fas fa-arrow-up" style="color: white; font-size: 22px; line-height: 55px;"></span>
+    <div class="scroll-to-top scroll-to-target" data-target="html">
+      <span class="fas fa-arrow-up"></span>
     </div>
+
+    <!-- Keyboard navigation hint -->
+    <div class="navigation-hint" id="navHint">
+      Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to navigate
+    </div>
+
     <script src="static/js/jquery.js"></script>
     <script src="static/js/popper.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
@@ -656,6 +876,10 @@
     <script src="static/js/appear.js"></script>
     <script src="static/js/custom-script.js"></script>
     <script src="static/js/other.js"></script>
+    <script src="static/js/tab-navigation-simple.js"></script>
+    <script src="static/js/dynamic-effects.js"></script>
+    <script src="static/js/comet-cursor.js"></script>
+    <script src="static/js/portal.js"></script>
 
 </body>
 

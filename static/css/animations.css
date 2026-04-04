@@ -1,0 +1,540 @@
+/* Dynamic Background Animations */
+
+.body-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Cinematic black universe background */
+.gradient-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    overflow: hidden;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 33% 50%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 79% 53%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 18% 88%, rgba(255, 255, 255, 0.4), transparent);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    animation: starsFloat 120s linear infinite;
+    opacity: 0.6;
+}
+
+.gradient-bg::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
+    animation: nebulaePulse 20s ease-in-out infinite;
+}
+
+@keyframes starsFloat {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+@keyframes nebulaePulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Cinematic meteor streaks */
+.animated-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8),
+                0 0 15px 4px rgba(99, 102, 241, 0.4);
+    opacity: 0;
+}
+
+.shape::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 20%,
+        rgba(99, 102, 241, 0.6) 60%,
+        rgba(139, 92, 246, 0.4) 100%);
+}
+
+.shape-1 {
+    top: 15%;
+    left: -5%;
+    animation: meteor1 12s linear infinite;
+}
+
+.shape-1::before {
+    width: 200px;
+}
+
+.shape-2 {
+    top: 35%;
+    left: -5%;
+    animation: meteor2 15s linear infinite 3s;
+}
+
+.shape-2::before {
+    width: 250px;
+}
+
+.shape-3 {
+    top: 55%;
+    left: -5%;
+    animation: meteor3 18s linear infinite 6s;
+}
+
+.shape-3::before {
+    width: 180px;
+}
+
+.shape-4 {
+    top: 25%;
+    left: -5%;
+    animation: meteor4 20s linear infinite 9s;
+}
+
+.shape-4::before {
+    width: 220px;
+}
+
+.shape-5 {
+    top: 70%;
+    left: -5%;
+    animation: meteor5 14s linear infinite 12s;
+}
+
+.shape-5::before {
+    width: 190px;
+}
+
+.shape-6 {
+    top: 45%;
+    left: -5%;
+    animation: meteor6 16s linear infinite 15s;
+}
+
+.shape-6::before {
+    width: 240px;
+}
+
+@keyframes meteor1 {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(110vw, 50vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor2 {
+    0% {
+        transform: translate(0, 0) rotate(40deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(120vw, 60vh) rotate(40deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor3 {
+    0% {
+        transform: translate(0, 0) rotate(50deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(115vw, 55vh) rotate(50deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor4 {
+    0% {
+        transform: translate(0, 0) rotate(42deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(125vw, 65vh) rotate(42deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor5 {
+    0% {
+        transform: translate(0, 0) rotate(48deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(118vw, 58vh) rotate(48deg);
+        opacity: 0;
+    }
+}
+
+@keyframes meteor6 {
+    0% {
+        transform: translate(0, 0) rotate(44deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(122vw, 62vh) rotate(44deg);
+        opacity: 0;
+    }
+}
+
+/* Smooth scroll reveal animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card hover effects */
+.feature-block .inner-box,
+.edu-block .inner-box,
+.interest-block .inner-box {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glowing effect on hover */
+.feature-block:hover .inner-box {
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+}
+
+/* Profile image hover effect */
+.left-bar .left-upper .image img {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.left-bar .left-upper .image:hover img {
+    transform: scale(1.05);
+}
+
+/* Navigation item slide effect */
+.main-nav .navigation li a {
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav .navigation li a::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.main-nav .navigation li a:hover::before {
+    left: 100%;
+}
+
+/* Skill bar animation enhancement */
+.skills .skill-block .bar-inner {
+    position: relative;
+    overflow: hidden;
+}
+
+.skills .skill-block .bar-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Testimonial card enhancement */
+.testimonials .image-box {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonials .slide-item:hover .image-box {
+    transform: translateY(-10px);
+}
+
+/* Button pulse effect */
+.download-cv .theme-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
+    }
+}
+
+/* Smooth page transitions */
+.page-wrapper {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Content cards stagger animation */
+.feature-block {
+    animation: slideInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.feature-block:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-block:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-block:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interest icons rotation on hover */
+.interest-block:hover .icon-box {
+    animation: iconBounce 0.6s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    z-index: 99999;
+    transition: width 0.2s ease;
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Glitch effect for titles */
+.glitch {
+    position: relative;
+    animation: glitch-animation 0.3s ease;
+}
+
+@keyframes glitch-animation {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Enhanced card tilt */
+.feature-block .inner-box,
+.interest-block .inner-box {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+}
+
+/* Glassmorphism effect */
+.left-bar .left-inner,
+.site-container .right-content {
+    backdrop-filter: blur(10px);
+}
+
+/* Gradient text effect for headings */
+h1, h2, h3, h4 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #3d3d5c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Download button shine effect */
+.download-cv .theme-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Smooth page load */
+body {
+    animation: pageLoad 1s ease-in-out;
+}
+
+@keyframes pageLoad {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

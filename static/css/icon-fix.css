@@ -1,0 +1,26 @@
+/* Convert orange icons to purple using CSS filters */
+
+/* Feature section icons (Full-Stack Development, Mobile App, Database) */
+.feature-block .icon-box img {
+    filter: hue-rotate(240deg) saturate(0.8) brightness(1.1);
+}
+
+/* Expertise section checkmark icons */
+.expertise-block ul li:before,
+.expertise-column ul li:before {
+    filter: hue-rotate(240deg) saturate(0.8) brightness(1.1);
+}
+
+/* Interest section icons (Hiking, Travel, Photography, Cycling, Reading, Gaming) */
+.interest-block .icon-box .icon.def-icon img,
+.interest-block .icon-box .icon.hvr-icon img {
+    filter: hue-rotate(240deg) saturate(0.8) brightness(1.1);
+}
+
+/* Main section title icons */
+.expertise .main-title .icon img,
+.education .main-title .icon img,
+.interests .main-title .icon img,
+.experience .main-title .icon img {
+    filter: hue-rotate(240deg) saturate(0.8) brightness(1.1);
+}

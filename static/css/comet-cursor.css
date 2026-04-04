@@ -1,0 +1,75 @@
+/* Comet Cursor Effect */
+body {
+  cursor: none;
+}
+
+/* Comet head - glowing orb */
+.comet-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #4a90e2 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 10px #4a90e2,
+    0 0 20px #4a90e2,
+    0 0 30px #4a90e2,
+    0 0 40px rgba(74, 144, 226, 0.5);
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+
+/* Particle trail */
+.comet-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+/* Particle fade out animation */
+@keyframes particleFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+
+  .comet-cursor,
+  .comet-particle {
+    display: none;
+  }
+}
+
+/* Links and interactive elements - show pointer hint */
+a, button, input, select, textarea, [role="button"] {
+  cursor: none !important;
+}
+
+/* Scale up comet on hover over interactive elements */
+body.comet-hovering .comet-cursor {
+  width: 24px;
+  height: 24px;
+  box-shadow:
+    0 0 15px #4a90e2,
+    0 0 25px #4a90e2,
+    0 0 35px #4a90e2,
+    0 0 50px rgba(74, 144, 226, 0.6);
+}

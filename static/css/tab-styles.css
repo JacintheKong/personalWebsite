@@ -1,0 +1,275 @@
+/* Clean tabbed interface styles */
+
+/* Content sections with smooth transitions */
+[id$="-section"] {
+    opacity: 1;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[id$="-section"].active-tab {
+    animation: fadeInContent 0.4s ease-out forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced navigation styling */
+.main-nav .navigation li {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-nav .navigation li a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Active tab indicator */
+.main-nav .navigation li.current {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.main-nav .navigation li.current a {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Hover effect enhancement */
+.main-nav .navigation li:not(.current):hover {
+    background: rgba(99, 102, 241, 0.03);
+}
+
+.main-nav .navigation li a:hover {
+    padding-left: 80px;
+}
+
+/* Number badge enhancement */
+.main-nav .navigation li.current a:after {
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Icon glow on active */
+.main-nav .navigation li.current a:before {
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+}
+
+/* Smooth scroll container */
+.right-content {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.right-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.right-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.right-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 10px;
+}
+
+.right-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+/* Tab transition container */
+.content-container {
+    position: relative;
+    min-height: 600px;
+}
+
+/* Loading state for smooth transitions */
+.content-container.transitioning {
+    pointer-events: none;
+}
+
+/* Mobile swipe indicator */
+@media (max-width: 991px) {
+    .right-content::before {
+        content: '← Swipe to navigate →';
+        position: sticky;
+        top: 0;
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+    }
+}
+
+/* Keyboard navigation hint */
+.navigation-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.navigation-hint.show {
+    opacity: 1;
+}
+
+.navigation-hint kbd {
+    display: inline-block;
+    padding: 3px 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-family: monospace;
+    margin: 0 2px;
+}
+
+/* CRITICAL: Ultra-simple tab control - FIX zero width/height issue! */
+/* Hide ALL sections */
+div[id$="-section"] {
+    display: none !important;
+}
+
+/* Show ONLY active tab - FORCE dimensions to fix 0x0 rendering! */
+div[id$="-section"].active-tab {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+    min-height: 500px !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Force parent containers to have proper width */
+.content-container {
+    width: 100% !important;
+    display: block !important;
+}
+
+.right-inner {
+    width: 100% !important;
+    display: block !important;
+}
+
+/* Override WOW.js and any animation libraries hiding content */
+.active-tab,
+.active-tab *,
+.active-tab .wow,
+.active-tab .animated {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+/* Premium tab switch effect */
+.tab-switch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.tab-switch-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Navigation number enhancement */
+.main-nav .navigation li a:after {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Active state left border accent */
+.main-nav .navigation li.current::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* Tab content wrapper for better control */
+.content-container > div {
+    transition: all 0.3s ease;
+}
+
+/* Smooth appearance for new content */
+.active-tab .feature-block,
+.active-tab .edu-block,
+.active-tab .expertise-block,
+.active-tab .interest-block {
+    animation: slideInContent 0.5s ease-out backwards;
+}
+
+.active-tab .feature-block:nth-child(1) { animation-delay: 0.1s; }
+.active-tab .feature-block:nth-child(2) { animation-delay: 0.2s; }
+.active-tab .feature-block:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Prevent layout shift during transitions */
+.content-container {
+    position: relative;
+}
+
+[id$="-section"] {
+    width: 100%;
+}
+
+/* Remove shimmer animation from skill bars */
+.skills .skill-block .bar-inner::after {
+    animation: none !important;
+    content: none !important;
+}
